@@ -1,0 +1,33 @@
+import turtle
+import time
+import random
+
+turtle.bgcolor("black")                                                             # Makes window background black
+turtle = turtle.Turtle()                                                            # Creates a turtle
+turtle.speed(5)                                                                     # Drawing speed
+
+print("This program will make a square spiral a certain size base upon user input") # Prints what the program will do.
+square_size_str = input("Enter a pixel size for the square(DO NOT INPUT ZERO!)")    # User enters input
+
+
+# Checks if user input is a character, a negative number, and a zero.
+while not square_size_str.isdigit() == True or int(square_size_str) <= 0:
+    print("!!!Error!!!: What you enter is not allow, I can only read whole numbers, Bad Human....  :( ")
+    square_size_str = input("Please Enter number of pixels you want for square size")
+square_size_int = int(square_size_str)
+
+
+# Main code, draws a spiral square
+if square_size_int >= 0:
+    turtle.forward(square_size_int)                                      # Moves turtle forward depnding on user input
+    turtle.right(90)                                                     # Turns the 90 degree of square
+    for i in range (1,50):
+        turtle.color(random.random(), random.random(), random.random())  # Gives square a rainbow color
+        turtle.forward(square_size_int)                                  # Moves turtle forward depending on user input
+        turtle.left(90)                                                  # Turns another 90 degree turn
+        square_size_int += 7                                             # Increase square size to for loop
+    turtle.penup()              # [Must line up with for] This shifts turtle line up
+    turtle.goto(100,100)        # [Must line up with for] This moves turtle position x to y
+
+time.sleep(50)                  # Maintains window pop-up open for 50 seconds
+os.exit(1)                      # Terminates the program in case something goes wrong
