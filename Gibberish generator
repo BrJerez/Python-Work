@@ -1,0 +1,81 @@
+# Brayan Jerez, proj03, PSIS 2105
+
+
+# Initializing variables
+print("Hello this is a Gibberish generator game. This game will create"
+      " new words\nusing syllables and words you input. Lets get started")
+print()
+
+# Initialize variable
+vowels = "aeiouAEIOU"                    # Defines english vowels
+index_count = -1                         # Counting letters must start at zero
+word_part1 = ""                          # Will save first syllable
+word_part2 = ""                          # Will save second syllable
+
+# Error checking below
+
+
+def wrong_input(word):                   # Wrong input function starts
+    error_input = False                                             # Wrong input is false
+    error = "~!@#$%^&()_+`123456790-={}|[]\:;<>?,./0123456789"      # Incorrect values that user might input
+    for letter in word:                                             # Letters in a word
+        if letter in error:                                         # Checks user word matches error list
+            error_input = True                                      # Letter matches with error list meaning error
+    return error_input                                              # returns input error
+
+# Main code below
+
+
+while True:
+    user_word = input("Enter a word (make sure it has a vowel): ")     # Ask user for input
+    if wrong_input(user_word):                                         # Grabs function wrong_input to check user input
+        while True:                                                    # Checks if user enter a number
+            user_word = input("!!!Error!!! did you enter a number? No you can't do that: ")  # Error message
+            if wrong_input(user_word):                                                       # Grabs function
+                continue
+            else:                                                       # Breaks out of loop
+                break
+
+    syl_one = input("Enter your a syllable: ")              # Ask user for a syllable
+
+    # Error check first syllable
+    if wrong_input(syl_one):                                # Grabs function wrong_input to check user syllable
+        while True:                                             # Checks if user enter a number
+            syl_one = input("!!!Error!!! enter a syllable: ")   # Error message for incorrect syllable
+            if wrong_input(syl_one):                            # Grabs function
+                continue
+            else:                                               # Breaks out of loop
+                break
+
+    syl_two = input("Enter your another syllable: ")        # Ask user for a second syllable
+
+    # Error check second syllable
+    if wrong_input(syl_two):                                # Grabs function wrong_input to check user second syllable
+        while True:                                             # Checks if user enter a number
+            syl_two = input("!!!Error!!! enter a syllable : ")  # Error message for incorrect second syllable
+            if wrong_input(syl_two):                            # Grabs function
+                continue
+            else:                                               # Breaks out of loop
+                break
+
+    for letter in user_word:                            # Checks each letter in a word
+        index_count += 1                                # Increase index of letters
+        if letter in vowels and '*' in syl_one:                 # Checks letters are vowel and * is a syllable
+            word_part1 += letter + syl_one.strip('*') + letter  # First syllable place before first vowel
+            word_part2 = user_word[index_count + 1:]            # Second syllable place before second vowel
+            break                                               # Breaks out of loop
+        elif letter in vowels and '*' not in syl_one:           # Checks letter are vowel and * are is not a syllable
+            word_part1 += syl_one                               # Adds word_part1 and first syllable
+            word_part2 = user_word[index_count + 1:]            # Adds user_word index by 1
+            break                                               # Breaks out of while loop
+        else:
+            word_part1 += letter                                # Other word_part is add with letter
+    print()
+    print("Your final word: ", (word_part1) + (word_part2))  # Prints generated word
+    print()
+
+    play = input("Play again? yes or no: ")                  # Ask user to to play again
+    if play == "yes" or play == "y":                         # If user choose yes game restarts
+        continue
+    else:                                                    # If false, the program will break and it's over.
+        break
