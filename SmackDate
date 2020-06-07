@@ -1,0 +1,206 @@
+# Brayan Jerez, Ximena Balbuena, Suzuan Abdalla. SmackDate  by Just code.
+
+import random
+
+# Initialization variables
+date_score = 0  # Initializes data score
+turn_limit = 0  # Initializes turn limit
+
+# User input
+User_name_str = "global"  # Makes User name variable accessible throughout the program
+
+
+def ask_name():  # Ask function is made
+    global User_name_str  # Variable is use in local
+    while True:  # Starts loop
+        User_name_str = input("Type in your name: ")  # User enters their name
+        if User_name_str.isalpha():  # Checks for letters
+            return User_name_str  # Returns user name info
+        else:  # False prints error
+            print("Error!!! I only accept Name characters")
+
+
+# Introduction
+print("Welcome to SmackDate.\n")
+print("You will have 6 attempts to find your potential match.\n"
+      "Smack right(no) or smack left(yes) to choose whether you want to go on a date or not.\n\n")
+
+ask_name()  # Calls functions
+
+User_age_int = "global"  # Makes user age variable accessible
+
+
+def ask_age():  # Age function is made
+    while True:  # Starts loop
+        global User_age_int  # Variable is use in local
+        try:  # Accepts positive integers
+            User_age_int = int(input("Type in your age: "))  # User enters their age
+        except ValueError:  # If words are enter error
+            print("Error!!! I only accept a number for age.")
+
+        if User_age_int <= 0:  # Checks for negative and zero
+            print("Error!!! I only accept numbers greater than zero")
+        else:  # Returns age
+            return User_age_int
+
+
+ask_age()  # Closes age function
+
+User_gender_str = "global"  # Makes user gender variable accessible
+
+
+def gender():  # Gender function is made
+    while True:  # Starts loop
+        global User_gender_str  # Variable is use in local
+        User_gender_str = input("what's your gender male or female: ").lower()  # User enters their gender
+        if User_gender_str == 'male':  # User is male return gender
+            return User_gender_str
+        elif User_gender_str == 'female':  # User is female return gender
+            return User_gender_str
+        else:  # Correct input returns to gender
+            print("Error!!! please only type male or female")
+
+
+gender()  # Closes gender function
+
+User_bio_str = input("Write a brief bio for your profile page: ")  # User enters dating bio
+
+# Prints User dating profile
+print()  # Makes space to look nicer
+print("Dating profile")
+print("Name:", User_name_str)  # Prints user name
+print("Age:", User_age_int)  # Prints user age
+print("Gender:", User_gender_str)  # Prints user gender
+print("About me:", User_bio_str)  # Prints user Bio
+print("-----------")
+
+# Date list
+Match_names = ["Emma", "Oliver", "Olivia", "Liam", "Ava",
+               "Noah", "Becky", "William", "Isabella",
+               "James", "Sophia", "Logan", "Mia", "Bejamin",
+               "Mason", "Elijah", "Charlotte", "Jacob", "Amelia",
+               "Harper"]  # List names of singles
+
+# List of possible single's bio
+Match_profile = ["tbh I just want to get some free Chipotle out of this. ",
+
+                 "I'm a hermit! I do not like to laugh and I love making people miserable. My walls are black and have no furniture."
+                 "I often chant in candle light while rocking back and forth on the floor.",
+
+                 "I'm looking for that perfect someone who is super mean. They also have to be super clingy and jealous."
+                 "I'm super in shape thanks to my strict diet of Mountain Dew and Doritos. Our first date would be at the gym. ",
+
+                 "The last person who smacked me right aged so quickly they shriveled up into an old man skeleton thing before they turned into dust and died a swift yet horrifying death."
+                 "\n \nHe chose poorly.",
+
+                 "I'm pretty great but don't listen to me, read my reviews:\n\n"
+                 "My life goals include: Use a spider web as a parachute. Punish men for being evil. Discover that there are still some good men in the world."
+                 "Become the best gardener I can be. Help all the blind people in the world",
+
+                 '"Very hard working, conscientious student."- my 10th grade English teacher\n\n'
+                 '"I would highly recommend for any position."- my first boss\n\n"'
+                 '"This one has got real potential!"- my 90+ next door neighbor\n',
+
+                 "Management/marketing consultant by day, semi-pretentious craft beer aficionado, and professional cat cuddler by night.",
+
+                 "Software engineer by day, even bigger nerd by night. Love anime, board games(beast at Dungeons & Dragons), and obscure music nobody else seems to listen to.",
+
+                 "Honestly, I’m just here looking for my parents. They disappeared one night a few years ago, and I heard I might be able to find them here. Please contact me if you have any pertinent information.",
+
+                 "Kind of a good samaritan, terrible athlete, but extremely blessed in the napping skills department. Just another paper-cut survivor.",
+
+                 "Hi, my hobbies include breakfast, lunch and dinner. I have to be funny, because being hot just isn’t an option for me at this point.",
+
+                 "I hope one day I love something the way women in commercials love yogurt. Recovering donut addict.",
+
+                 "Just over here having an allergic reaction to everyday life. I still don't understand the Smack Dating App, but I'm here anyways!",
+
+                 "I’m not actually funny, I’m really mean and people think I’m joking. I’m not. Inserts pretentious crap about myself here.",
+
+                 "Chocolate never asks me any questions, chocolate understands me. Looking for that special someone that understands me as much as chocolate.",
+
+                 "Throwing kindness around like confetti. My goal is to create a life that I don't want to take a vacation from."
+                 '\n "Be strong," I whispered to my wifi signal.',
+
+                 "Trying to elevate a small talk to medium talk. I'm here to avoid friends on Facebook. My relationship status? Netflix, Chipotle and sweatpants.",
+
+                 "I can't remember who I stole my bio from or why.",
+
+                 "Single and ready to get nervous around anyone I find attractive.",
+
+                 "The bags under my eyes are Gucci.",
+
+                 '"If you fall, I will be there"- Floor, 2018',
+
+                 "Professional Netflix Marathon Runner. I wanna be different just like everyone else.",
+
+                 "Keep the dream alive- hit the snooze button. I can resist everything except temptation.",
+
+                 "God gave me a lot of hair, but not a lot of height. 5'2 is my height but my attitude is 6'1.",
+
+                 "Somewhere out there my soulmate is pushing a pull door. I just know it!",
+
+                 "Always classy, never trashy, and a little bit sassy. Today I will be as useless as letter G in lasagna."
+
+                 ]
+
+Match_age = ["20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"]  # List of possible signal's Age
+
+# Random attributes selected for singles
+Chosen_date = random.choice(Match_names)  # Variable for randomly picking a single's name
+Chosen_profile = random.choice(Match_profile)  # Variable for randomly picking a single's bio
+Chosen_age = random.choice(Match_age)  # Variable for randomly picking a single's age
+
+while turn_limit <= 5:  # Starts loop and ends after six turns
+    print("This is", Chosen_date, ". They are", Chosen_age, "years old.")  # prints a random single's name and age
+    print()  # Makes space to look nicer
+    print("Bio: \n", Chosen_profile)  # prints a random single's bio
+    print()  # Makes space to look nicer
+
+    # User makes dating decision yes or no
+    User_choice = input("Would you like to go on a date with this person if so smack "
+                        "left for yes or smack right for no. \n Please type left (yes) or right(no): ")
+
+    if User_choice == 'left':  # User decides to a date single
+        print("Great you have one date with ", Chosen_date)  # prints single's name
+        print("Now you can always have another date, there are "
+              "seven days in a week after all.That's plenty of time... ;-)")
+        print("-----------")
+        print()  # Makes space to look nicer
+        date_score += 1  # Adds one point to user score
+    else:
+        print("That's ok, there are plenty of fish in the sea...")
+        print("-----------")
+        print()  # Makes space to look nicer
+    turn_limit += 1  # Adds one to turn limit
+    Chosen_date = random.choice(Match_names)  # Chooses another match name for next turn
+    Chosen_age = random.choice(Match_age)  # Chooses another age number for next turn
+    Chosen_profile = random.choice(Match_profile)  # Chooses another profile
+
+if date_score == 0:  # Outcome from user score
+    print("We are sending you to dating boot camp!")  # Unique message
+    print("Your total score is", date_score)  # Shows total score
+
+elif date_score == 1:  # Outcome fro user score
+    print("Consider making an account on E-Harmony...")  # Unique message
+    print("Your total score is", date_score)  # Show total score
+
+elif date_score == 2:  # Outcome from user score
+    print("Two is always better than one. Don't give up!")  # Unique message
+    print("Your total score is", date_score)  # Shows total score
+
+elif date_score == 3:  # Outcome from user score
+    print("It's ok to be an average Joe.")  # Unique message
+    print("Your total score is", date_score)  # Shows total score
+
+elif date_score == 4:  # Outcome from user score
+    print("Don't hate the player, hate the game.")  # Unique message
+    print("Your total score is", date_score)  # Shows total score
+
+elif date_score == 5:  # Outcome from user score
+    print("You should give others dating advice!")  # Unique message
+    print("Your total score is", date_score)  # Shows total score
+
+elif date_score == 6:  # Outcome from user score
+    print("Congratulations you will be a special guest on The Bachelor show!")  # Unique message
+    print("Your total score is", date_score)  # Shows total score
